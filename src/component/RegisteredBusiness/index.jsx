@@ -1,9 +1,9 @@
 import React from 'react'
+import RegisteredBusinessTable from '../RegisteredBusinessTable'
 
 function RegisteredBusiness() {
   return (
-    <div className='h-full'>RegisteredBusiness</div>
-  )
+    <RegisteredBusinessTable/>)
 }
 
 export default RegisteredBusiness

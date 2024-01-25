@@ -5,9 +5,26 @@ import { RxDashboard } from "react-icons/rx";
 import { GiArchiveRegister } from "react-icons/gi";
 import { IoDocumentsOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { useBusinessContext } from "../../context/businessContext";
 
 function Sidebar() {
   const [open, setopen] = useState(true);
+
+  const {setActiveNavbarTitle}=useBusinessContext()
+
+  const setDashboardTitle=()=>{
+    setActiveNavbarTitle("Dashboard")
+  }
+
+  const setBusinessRegisteredTitle=()=>{
+    setActiveNavbarTitle("Business Registered")
+
+  }
+
+  const setDocumentsTitle=()=>{
+    setActiveNavbarTitle("Documents")
+
+  }
 
   return (
     <div className="flex">
@@ -26,6 +43,7 @@ function Sidebar() {
 
         <div
           className={`flex gap-x-2 text-white items-center font-medium text-4xl`}
+         
         >
           <MdBusinessCenter color="white" className="duration-500 " />
           <h1
@@ -40,7 +58,7 @@ function Sidebar() {
           <ul className="flex flex-col gap-x-2 text-white font-medium font-poppins">
             <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2"  onClick={()=>setDashboardTitle()}>
                   <RxDashboard />
                   <p className={`${!open && "hidden"}`}>Dashboard</p>
                 </div>
@@ -48,7 +66,7 @@ function Sidebar() {
             </li>
             <li className=" m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/registered-business">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2" onClick={()=>setBusinessRegisteredTitle()}>
                   <GiArchiveRegister />
                   <p className={`${!open && "hidden"}`}>Registered Business</p>
                 </div>
@@ -56,7 +74,7 @@ function Sidebar() {
             </li>
             <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/documents" className={""}>
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2" onClick={()=>setDocumentsTitle()}>
                   <IoDocumentsOutline />
                   <p className={`${!open && "hidden"}`}>Document</p>
                 </div>
