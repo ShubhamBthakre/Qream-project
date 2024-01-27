@@ -10,7 +10,7 @@ import { useBusinessContext } from "../../context/businessContext";
 import { NavLink } from "react-router-dom";
 
 function BasicTable() {
-  //to imporove performance we use useMemo
+  //to improve performance we use useMemo
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
   const { setActiveNavbarTitle, setItemDetails } = useBusinessContext();
@@ -62,7 +62,7 @@ function BasicTable() {
 
   return (
     <table {...getTableProps} className="w-full border-collapse table-fixed">
-      <thead className="p-2 text-center">
+      <thead className="text-center">
         {headerGroups.map((headerGroup) => (
           <tr
             {...headerGroup.getHeaderGroupProps()}
@@ -72,7 +72,7 @@ function BasicTable() {
             {headerGroup.headers.map((column) => (
               <th
                 {...column.getHeaderProps(column.getSortByToggleProps())}
-                className="p-2 text-left w-auto"
+                className="p-1 text-left text-sm md:text-base"
                 key={column.id}
               >
                 {column.render("Header")}
@@ -105,7 +105,7 @@ function BasicTable() {
               {row.cells.map((cell) => (
                 <td
                   {...cell.getCellProps()}
-                  className="p-2 w-auto"
+                  className="p-1 w-auto text-sm md:text-base text-wrap"
                   key={cell.id}
                   onClick={() => setItemDetails(Number(row.id) + 1)}
                 >

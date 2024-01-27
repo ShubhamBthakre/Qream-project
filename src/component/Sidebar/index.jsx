@@ -13,9 +13,9 @@ function Sidebar() {
   const { setActiveNavbarTitle } = useBusinessContext();
 
   return (
-    <div className="flex min-h-full">
+    <div className="flex">
       <div
-        className={`transition-width duration-300 ease-in-out p-5 pt-8 bg-dark-purple relative ${
+        className={`h-screen p-5 pt-8 bg-dark-purple relative ${
           open ? "w-62" : "w-20"
         }`} 
       >
@@ -39,7 +39,7 @@ function Sidebar() {
             BetterBussiness
           </h1>
         </div>
-        <div className="h-full my-4 md:my-8">
+        <div className="min-h-full my-4 md:my-8">
           <ul className="flex flex-col gap-x-2 text-white font-medium font-poppins text-sm md:text-lg">
             <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/">
@@ -47,7 +47,7 @@ function Sidebar() {
                   className="flex items-center gap-x-2"
                   onClick={() => setActiveNavbarTitle("Dashboard")}
                 >
-                  <RxDashboard />
+                  <RxDashboard className="text-2xl"/>
                   <p className={`${!open && "hidden"}`}>Dashboard</p>
                 </div>
               </NavLink>

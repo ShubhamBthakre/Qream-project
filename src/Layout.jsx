@@ -11,7 +11,7 @@ function Layout() {
           <Sidebar />
           <div className="flex flex-col w-full min-h-full">
             <Navbar />
-            <div className="mt-1 p-1 md:p-5">
+            <div className="min-h-full mt-1 p-1 md:p-5">
               <Outlet />
             </div>
           </div>
