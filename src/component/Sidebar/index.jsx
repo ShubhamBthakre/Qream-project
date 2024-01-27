@@ -10,28 +10,14 @@ import { useBusinessContext } from "../../context/businessContext";
 function Sidebar() {
   const [open, setopen] = useState(true);
 
-  const {setActiveNavbarTitle}=useBusinessContext()
-
-  const setDashboardTitle=()=>{
-    setActiveNavbarTitle("Dashboard")
-  }
-
-  const setBusinessRegisteredTitle=()=>{
-    setActiveNavbarTitle("Business Registered")
-
-  }
-
-  const setDocumentsTitle=()=>{
-    setActiveNavbarTitle("Documents")
-
-  }
+  const { setActiveNavbarTitle } = useBusinessContext();
 
   return (
-    <div className="flex">
+    <div className="flex min-h-full">
       <div
-        className={`${
+        className={`transition-width duration-300 ease-in-out p-5 pt-8 bg-dark-purple relative ${
           open ? "w-62" : "w-20"
-        } h-screen p-5 pt-8 bg-dark-purple relative `}
+        }`} 
       >
         <img
           src={controlImg}
@@ -42,10 +28,9 @@ function Sidebar() {
         />
 
         <div
-          className={`flex gap-x-2 text-white items-center font-medium text-4xl`}
-         
+          className={`flex flex-col md:flex-row gap-x-2 text-white items-center font-medium text-xl md:text-3xl`}
         >
-          <MdBusinessCenter color="white" className="duration-500 " />
+          <MdBusinessCenter color="white" className="duration-500 order-2 md:order-1" />
           <h1
             className={`origin-left  duration-300 ${
               !open && "hidden"
@@ -54,11 +39,14 @@ function Sidebar() {
             BetterBussiness
           </h1>
         </div>
-        <div className="mt-8">
-          <ul className="flex flex-col gap-x-2 text-white font-medium font-poppins">
+        <div className="h-full my-4 md:my-8">
+          <ul className="flex flex-col gap-x-2 text-white font-medium font-poppins text-sm md:text-lg">
             <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/">
-                <div className="flex items-center gap-x-2"  onClick={()=>setDashboardTitle()}>
+                <div
+                  className="flex items-center gap-x-2"
+                  onClick={() => setActiveNavbarTitle("Dashboard")}
+                >
                   <RxDashboard />
                   <p className={`${!open && "hidden"}`}>Dashboard</p>
                 </div>
@@ -66,7 +54,10 @@ function Sidebar() {
             </li>
             <li className=" m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/registered-business">
-                <div className="flex items-center gap-x-2" onClick={()=>setBusinessRegisteredTitle()}>
+                <div
+                  className="flex items-center gap-x-2"
+                  onClick={() => setActiveNavbarTitle("Business Registered")}
+                >
                   <GiArchiveRegister />
                   <p className={`${!open && "hidden"}`}>Registered Business</p>
                 </div>
@@ -74,7 +65,10 @@ function Sidebar() {
             </li>
             <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
               <NavLink to="/documents" className={""}>
-                <div className="flex items-center gap-x-2" onClick={()=>setDocumentsTitle()}>
+                <div
+                  className="flex items-center gap-x-2"
+                  onClick={() => setActiveNavbarTitle("Documents")}
+                >
                   <IoDocumentsOutline />
                   <p className={`${!open && "hidden"}`}>Document</p>
                 </div>

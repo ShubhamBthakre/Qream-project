@@ -2,7 +2,9 @@ import { createContext ,useContext} from "react";
 
 const businessContext=createContext({
     activeNavbarTitle:"Dashboard",
-    setActiveNavbarTitle:(title)=>{}
+    setActiveNavbarTitle:(title)=>{},
+    itemDetails:"",
+    setItemDetails:(data)=>{}
 })
 
 
