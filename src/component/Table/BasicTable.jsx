@@ -61,18 +61,21 @@ function BasicTable() {
 
   return (
     <div>
-      <table {...getTableProps} className="w-full border-collapse table-fixed">
-        <thead className="text-center">
+      <table
+        {...getTableProps}
+        className="w-auto border-collapse border border-slate-200 table-fixed rounded-t-xl overflow-hidden"
+      >
+        <thead className="text-center p-2">
           {headerGroups.map((headerGroup) => (
             <tr
               {...headerGroup.getHeaderGroupProps()}
-              className="bg-light-blue"
+              className="bg-light-blue "
               key={headerGroup.id}
             >
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="p-1 text-left text-sm md:text-base"
+                  className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300"
                   key={column.id}
                 >
                   {column.render("Header")}
@@ -105,7 +108,7 @@ function BasicTable() {
                 {row.cells.map((cell) => (
                   <td
                     {...cell.getCellProps()}
-                    className="p-1 w-auto text-sm md:text-base text-wrap"
+                    className="w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3"
                     key={cell.id}
                     onClick={() => setItemDetails(Number(row.id) + 1)}
                   >
@@ -143,13 +146,8 @@ function BasicTable() {
         </code>
       </pre> */}
       </table>
-      <div className="flex align-centre gap-x-5 min-w-full text-lg mt-2">
-        <div>
-          Page <span className="font-semibold">{pageIndex + 1}</span> of{" "}
-          <span className="font-semibold">{pageOptions.length}</span>
-        </div>
 
-        {/* <select
+      {/* <select
           value={pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
         >
@@ -158,8 +156,8 @@ function BasicTable() {
           ))}
         </select> */}
 
-        <div className="flex gap-x-4 text-xl">
-          <div>
+      <div className="w-full flex gap-x-4 text-xl">
+        {/* <div>
             <button
               onClick={() => gotoPage(0)}
               disabled={!canPreviousPage}
@@ -167,31 +165,31 @@ function BasicTable() {
             >
               {"<< "}
             </button>
-          </div>
+          </div> */}
 
-          <div className="flex gap-x-2">
-            <div>
-              <button
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="cursor-pointer"
-              >
-                {" <"}
-              </button>
-            </div>
-
-            <div>
-              <button
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-                className="cursor-pointer"
-              >
-                {"> "}
-              </button>
-            </div>
-          </div>
+        <div className="w-full flex items-center gap-x-2 mt-2">
+          <button
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+            className="cursor-pointer p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold"
+          >
+            {"Prev"}
+          </button>
 
           <div>
+            <span className="font-semibold">{pageIndex + 1}</span> of{" "}
+            <span className="font-semibold">{pageOptions.length}</span>
+          </div>
+
+          <button
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+            className="cursor-pointer p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold"
+          >
+            {"Next"}
+          </button>
+
+          {/* <div>
             <button
               onClick={() => gotoPage(pageCount - 1)}
               disabled={!canNextPage}
@@ -199,7 +197,7 @@ function BasicTable() {
             >
               {">>"}
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

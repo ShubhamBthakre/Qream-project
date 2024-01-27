@@ -13,7 +13,7 @@ function RegisteredBusinessTableItemDetails() {
     setActiveNavbarTitle("Business Registered")
   };
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <div>
         <IoMdArrowRoundBack onClick={()=>handleRedirect()} className="cursor-pointer text-2xl"/>
       </div>
