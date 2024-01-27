@@ -9,8 +9,8 @@ function DashboardCard({ label, title, count }) {
           <option></option>
         </select>
       </div>
-      <p className="font-poppins text-xl text-center my-5">{title}</p>
-      <p className="font-poppins text-3xl font-bold text-center">{count}</p>
+      <p className="font-poppins text-lg md:text-2xl text-center my-5">{title}</p>
+      <p className="font-poppins text-2xl md:text-3xl font-bold text-center">{count}</p>
     </div>
   );
 }

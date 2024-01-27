@@ -40,9 +40,7 @@ function Sidebar() {
         >
           <MdBusinessCenter
             color="white"
-            className={`duration-500 ${
-              isNavbarOpen && "hidden"
-            } `}
+            className={`duration-500 ${isNavbarOpen && "hidden"} `}
           />
           <h1
             className={`origin-left  duration-300 ${
@@ -54,7 +52,7 @@ function Sidebar() {
         </div>
         <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl">
           <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl">
-            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
               <NavLink to="/" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -65,7 +63,7 @@ function Sidebar() {
                 </div>
               </NavLink>
             </li>
-            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
               <NavLink to="/registered-business" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -80,7 +78,7 @@ function Sidebar() {
                 </div>
               </NavLink>
             </li>
-            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
               <NavLink to="/documents" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
