@@ -16,10 +16,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Dashboard />} />
-      <Route path="/registered-business" element={<RegisteredBusiness />} />
-      <Route path="/documents" element={<Documents />} />
+      <Route path="registered-business" element={<RegisteredBusiness />} />
+      <Route path="documents" element={<Documents />} />
       <Route
-        path="/registered-business-Item-details"
+        path="registered-business-Item-details"
         element={<RegisteredBusinessTableItemDetails />}
       />
     </Route>
@@ -29,6 +29,7 @@ const router = createBrowserRouter(
 function App() {
   const [activeNavbarTitle, setTitle] = useState("Dashboard");
   const [data, setData] = useState(null);
+  const [isNavbarOpen,setOpen]=useState(true)
 
   const setActiveNavbarTitle = (title) => {
     setTitle(title);
@@ -38,9 +39,19 @@ function App() {
     setData(data);
   };
 
+  const setNavbarOpen=(isNavbarOpen)=>{
+    setOpen(isNavbarOpen)
+  }
+
   return (
     <BusinessContextProvider
-      value={{ activeNavbarTitle, setActiveNavbarTitle, setItemDetails }}
+      value={{
+        activeNavbarTitle,
+        setActiveNavbarTitle,
+        setItemDetails,
+        setNavbarOpen,
+        isNavbarOpen,
+      }}
     >
       <RouterProvider router={router} />
     </BusinessContextProvider>

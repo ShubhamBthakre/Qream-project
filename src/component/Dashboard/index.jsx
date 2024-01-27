@@ -2,8 +2,10 @@ import React from "react";
 import DashboardCard from "../DashboardCard";
 import PieChartCard from "../PieChart";
 import { data } from "autoprefixer";
+import { useBusinessContext } from "../../context/businessContext";
 
 function Dashboard() {
+  const {} = useBusinessContext();
   return (
     <div className="flex flex-col min-h-full shadow-lg p-2 md:p-5">
       <div className="flex flex-wrap">

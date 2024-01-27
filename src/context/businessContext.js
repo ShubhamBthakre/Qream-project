@@ -1,16 +1,16 @@
-import { createContext ,useContext} from "react";
+import { createContext, useContext } from "react";
 
-const businessContext=createContext({
-    activeNavbarTitle:"Dashboard",
-    setActiveNavbarTitle:(title)=>{},
-    itemDetails:"",
-    setItemDetails:(data)=>{}
-})
+const businessContext = createContext({
+  activeNavbarTitle: "Dashboard",
+  setActiveNavbarTitle: (title) => {},
+  itemDetails: "",
+  setItemDetails: (data) => {},
+  isNavbarOpen: true,
+  setNavbarOpen: () => {},
+});
 
+export const BusinessContextProvider = businessContext.Provider;
 
-export const BusinessContextProvider=businessContext.Provider;
-
-export const useBusinessContext=()=>{
-    return useContext(businessContext)
-}
-
+export const useBusinessContext = () => {
+  return useContext(businessContext);
+};

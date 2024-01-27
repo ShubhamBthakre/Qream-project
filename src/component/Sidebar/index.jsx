@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import controlImg from "../../assets/control.png";
 import { MdBusinessCenter } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
@@ -8,69 +9,87 @@ import { NavLink } from "react-router-dom";
 import { useBusinessContext } from "../../context/businessContext";
 
 function Sidebar() {
-  const [open, setopen] = useState(true);
+  const { setActiveNavbarTitle, isNavbarOpen, setNavbarOpen } =
+    useBusinessContext();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const isSmall = useMediaQuery({ query: "(max-width: 640px)" }); // sm breakpoint
 
-  const { setActiveNavbarTitle } = useBusinessContext();
+  useEffect(() => {
+    if (isSmall) {
+      setNavbarOpen(false);
+    }
+  }, [isSmall]);
 
   return (
-    <div className="flex">
+    <div className="flex fixed h-full">
       <div
         className={`h-screen p-5 pt-8 bg-dark-purple relative ${
-          open ? "w-62" : "w-20"
-        }`} 
+          isNavbarOpen ? "w-62" : "w-20"
+        }`}
       >
         <img
           src={controlImg}
           className={`absolute cursor-pointer -right-3 top-9 w-5 border-2  border-dark-purple rounded-full ${
-            !open && "rotate-180"
+            !isNavbarOpen && "rotate-180"
           }`}
-          onClick={() => setopen(!open)}
+          onClick={() => setNavbarOpen(!isNavbarOpen)}
         />
 
         <div
-          className={`flex flex-col md:flex-row gap-x-2 text-white items-center font-medium text-xl md:text-3xl`}
+          className={`w-full flex flex-col md:flex-row text-white font-medium text-2xl md:text-4xl`}
         >
-          <MdBusinessCenter color="white" className="duration-500 order-2 md:order-1" />
+          <MdBusinessCenter
+            color="white"
+            className={`duration-500 ${
+              isNavbarOpen && "hidden"
+            } `}
+          />
           <h1
             className={`origin-left  duration-300 ${
-              !open && "hidden"
+              !isNavbarOpen && "hidden"
             } font-podova`}
           >
             BetterBussiness
           </h1>
         </div>
-        <div className="min-h-full my-4 md:my-8">
-          <ul className="flex flex-col gap-x-2 text-white font-medium font-poppins text-sm md:text-lg">
-            <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
-              <NavLink to="/">
+        <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl">
+          <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl">
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+              <NavLink to="/" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
                   onClick={() => setActiveNavbarTitle("Dashboard")}
                 >
-                  <RxDashboard className="text-2xl"/>
-                  <p className={`${!open && "hidden"}`}>Dashboard</p>
+                  <RxDashboard className={`${isNavbarOpen && "hidden"}`} />
+                  <p className={`${!isNavbarOpen && "hidden"}`}>Dashboard</p>
                 </div>
               </NavLink>
             </li>
-            <li className=" m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
-              <NavLink to="/registered-business">
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+              <NavLink to="/registered-business" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
                   onClick={() => setActiveNavbarTitle("Business Registered")}
                 >
-                  <GiArchiveRegister />
-                  <p className={`${!open && "hidden"}`}>Registered Business</p>
+                  <GiArchiveRegister
+                    className={`${isNavbarOpen && "hidden"}`}
+                  />
+                  <p className={`${!isNavbarOpen && "hidden"}`}>
+                    Registered Business
+                  </p>
                 </div>
               </NavLink>
             </li>
-            <li className="m-2 border-b-2 p-4 pl-0 border-inherit cursor-pointer">
-              <NavLink to="/documents" className={""}>
+            <li className="border-b-2 p-4 pl-0 border-inherit cursor-pointer">
+              <NavLink to="/documents" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
                   onClick={() => setActiveNavbarTitle("Documents")}
                 >
-                  <IoDocumentsOutline />
-                  <p className={`${!open && "hidden"}`}>Document</p>
+                  <IoDocumentsOutline
+                    className={`${isNavbarOpen && "hidden"}`}
+                  />
+                  <p className={`${!isNavbarOpen && "hidden"}`}>Document</p>
                 </div>
               </NavLink>
             </li>

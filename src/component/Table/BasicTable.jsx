@@ -66,7 +66,7 @@ function BasicTable() {
           {headerGroups.map((headerGroup) => (
             <tr
               {...headerGroup.getHeaderGroupProps()}
-              className=""
+              className="bg-light-blue"
               key={headerGroup.id}
             >
               {headerGroup.headers.map((column) => (
@@ -99,7 +99,7 @@ function BasicTable() {
               <tr
                 {...row.getRowProps()}
                 onClick={() => setActiveNavbarTitle(Number(row.id) + 1)}
-                className="even:bg-gray-100 cursor-pointer hover:bg-sky-100"
+                className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
                 key={row.id}
               >
                 {row.cells.map((cell) => (
