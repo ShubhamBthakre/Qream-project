@@ -11,26 +11,27 @@ import { v4 as uuidv4 } from "uuid";
 
 function BasicTable() {
   const [mockData, setMockData] = useState(MOCK_DATA);
-  const [selectedOption, setSelectedOption] = useState('All');
+  const [selectedOption, setSelectedOption] = useState("All");
 
   useEffect(() => {
-    if(selectedOption==="All"){
-      setMockData(MOCK_DATA)
-    }else{
-      const filteredData=MOCK_DATA.filter((eachData)=>eachData.type===selectedOption)
-      setMockData(filteredData)
+    if (selectedOption === "All") {
+      setMockData(MOCK_DATA);
+    } else {
+      const filteredData = MOCK_DATA.filter(
+        (eachData) => eachData.type === selectedOption
+      );
+      setMockData(filteredData);
     }
   }, [selectedOption]);
 
- 
   //to improve performance we use useMemo
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => mockData, [mockData]);
   const { setActiveNavbarTitle, setItemDetails } = useBusinessContext();
 
-  const handleSelectChange=(event)=>{
-    setSelectedOption(event.target.value)
-  }
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   const tableInstance = useTable(
     {
@@ -79,7 +80,11 @@ function BasicTable() {
 
   return (
     <div>
-      <select value={selectedOption} onChange={handleSelectChange} className="outline-none">
+      <select
+        value={selectedOption}
+        onChange={handleSelectChange}
+        className="outline-none"
+      >
         <option>All</option>
         <option>Corporation</option>
         <option>LCC</option>
