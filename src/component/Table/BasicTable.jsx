@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTable, useSortBy, usePagination, useRowSelect } from "react-table";
 import MOCK_DATA from "../../assets/MOCK_DATA.json";
 import { COLUMNS } from "./column";
@@ -7,12 +7,30 @@ import { TbSortDescendingLetters } from "react-icons/tb";
 import { Checkbox } from "./RowSelection";
 import { useBusinessContext } from "../../context/businessContext";
 import { NavLink } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function BasicTable() {
+  const [mockData, setMockData] = useState(MOCK_DATA);
+  const [selectedOption, setSelectedOption] = useState('All');
+
+  useEffect(() => {
+    if(selectedOption==="All"){
+      setMockData(MOCK_DATA)
+    }else{
+      const filteredData=MOCK_DATA.filter((eachData)=>eachData.type===selectedOption)
+      setMockData(filteredData)
+    }
+  }, [selectedOption]);
+
+ 
   //to improve performance we use useMemo
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => MOCK_DATA, []);
+  const data = useMemo(() => mockData, [mockData]);
   const { setActiveNavbarTitle, setItemDetails } = useBusinessContext();
+
+  const handleSelectChange=(event)=>{
+    setSelectedOption(event.target.value)
+  }
 
   const tableInstance = useTable(
     {
@@ -61,6 +79,11 @@ function BasicTable() {
 
   return (
     <div>
+      <select value={selectedOption} onChange={handleSelectChange} className="outline-none">
+        <option>All</option>
+        <option>Corporation</option>
+        <option>LCC</option>
+      </select>
       <table
         {...getTableProps}
         className="w-full border-collapse border border-slate-300  rounded-t-xl overflow-hidden"
@@ -70,13 +93,13 @@ function BasicTable() {
             <tr
               {...headerGroup.getHeaderGroupProps()}
               className="bg-light-blue "
-              key={headerGroup.id}
+              key={uuidv4()}
             >
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                   className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300"
-                  key={column.id}
+                  key={uuidv4()}
                 >
                   {column.render("Header")}
                   <span>
@@ -103,13 +126,13 @@ function BasicTable() {
                 {...row.getRowProps()}
                 onClick={() => setActiveNavbarTitle(Number(row.id) + 1)}
                 className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
-                key={row.id}
+                key={uuidv4()}
               >
                 {row.cells.map((cell) => (
                   <td
                     {...cell.getCellProps()}
                     className="w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3"
-                    key={cell.id}
+                    key={uuidv4()}
                     onClick={() => setItemDetails(Number(row.id) + 1)}
                   >
                     <NavLink
@@ -171,7 +194,11 @@ function BasicTable() {
           <button
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
-            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${!canPreviousPage?"opacity-40 cursor-not-allowed":"opacity-1 cursor-pointer"}`}
+            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${
+              !canPreviousPage
+                ? "opacity-40 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
           >
             {"Prev"}
           </button>
@@ -181,17 +208,17 @@ function BasicTable() {
             <span className="font-semibold">{pageOptions.length}</span>
           </div>
 
-
-        
           <button
             onClick={() => nextPage()}
             disabled={!canNextPage}
-            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${!canNextPage?"opacity-40 cursor-not-allowed":"opacity-1 cursor-pointer"}`}
+            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${
+              !canNextPage
+                ? "opacity-40 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
           >
             {"Prev"}
           </button>
-
-         
 
           {/* <div>
             <button

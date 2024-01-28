@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 const businessContext = createContext({
-  activeNavbarTitle: "Dashboard",
+  activeNavbarTitle: "",
   setActiveNavbarTitle: (title) => {},
   itemDetails: "",
   setItemDetails: (data) => {},

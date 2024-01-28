@@ -16,7 +16,8 @@
     "react-responsive": "^9.0.2",
     "react-router-dom": "^6.21.3",
     "react-table": "^7.8.0",
-    "recharts": "^2.10.4"
+    "recharts": "^2.10.4",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

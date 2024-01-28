@@ -9,7 +9,7 @@ import Dashboard from "./component/Dashboard";
 import RegisteredBusiness from "./component/RegisteredBusiness";
 import Documents from "./component/Documents";
 import { BusinessContextProvider } from "./context/businessContext";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RegisteredBusinessTableItemDetails from "./component/RegisteredBusinessTableItemDetails";
 
 const router = createBrowserRouter(
@@ -27,21 +27,49 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const [activeNavbarTitle, setTitle] = useState("Dashboard");
+ 
+
+
+  let initialState = JSON.parse(localStorage.getItem("myState"));
+
+  if (!initialState) {
+    initialState = {
+      isNavbarOpen: true,
+      activeNavbarTitle: "Dashboard",
+    };
+  }
+
+  console.log("initialState", initialState);
+
+  
+  let [myState, setMyState] = useState(initialState);
+
+  useEffect(() => {
+    localStorage.setItem("myState", JSON.stringify(initialState));
+    console.log("myState",myState)
+  }, [myState]);
+
+
+  const [activeNavbarTitle, setTitle] = useState(initialState.activeNavbarTitle);
   const [data, setData] = useState(null);
-  const [isNavbarOpen,setOpen]=useState(true)
+  const [isNavbarOpen, setOpen] = useState(initialState.isNavbarOpen);
+ 
 
   const setActiveNavbarTitle = (title) => {
     setTitle(title);
+    setMyState({...myState,activeNavbarTitle:title})
+    
   };
 
   const setItemDetails = (data) => {
     setData(data);
   };
 
-  const setNavbarOpen=(isNavbarOpen)=>{
-    setOpen(isNavbarOpen)
-  }
+  const setNavbarOpen = (isNavbarOpen) => {
+    setOpen(isNavbarOpen);
+    setMyState({...myState,isNavbarOpen:isNavbarOpen})
+    
+  };
 
   return (
     <BusinessContextProvider
