@@ -63,7 +63,7 @@ function BasicTable() {
     <div>
       <table
         {...getTableProps}
-        className="w-auto border-collapse border border-slate-200 table-fixed rounded-t-xl overflow-hidden"
+        className="w-auto border-collapse border border-slate-300 table-fixed rounded-t-xl overflow-hidden"
       >
         <thead className="text-center p-2">
           {headerGroups.map((headerGroup) => (
@@ -171,7 +171,7 @@ function BasicTable() {
           <button
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
-            className="cursor-pointer p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold"
+            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${!canPreviousPage?"opacity-40 cursor-not-allowed":"opacity-1 cursor-pointer"}`}
           >
             {"Prev"}
           </button>
@@ -181,13 +181,17 @@ function BasicTable() {
             <span className="font-semibold">{pageOptions.length}</span>
           </div>
 
+
+        
           <button
             onClick={() => nextPage()}
             disabled={!canNextPage}
-            className="cursor-pointer p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold"
+            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${!canNextPage?"opacity-40 cursor-not-allowed":"opacity-1 cursor-pointer"}`}
           >
-            {"Next"}
+            {"Prev"}
           </button>
+
+         
 
           {/* <div>
             <button
