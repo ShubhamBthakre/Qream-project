@@ -63,7 +63,7 @@ function BasicTable() {
     <div>
       <table
         {...getTableProps}
-        className="w-auto border-collapse border border-slate-300 table-fixed rounded-t-xl overflow-hidden"
+        className="w-full border-collapse border border-slate-300  rounded-t-xl overflow-hidden"
       >
         <thead className="text-center p-2">
           {headerGroups.map((headerGroup) => (

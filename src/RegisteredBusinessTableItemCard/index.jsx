@@ -9,21 +9,21 @@ function ItemCard() {
   console.log("active Navbar Details", activeNavbarTitle);
   console.log("item details", itemDetails);
 
-  const BusinessitemDetails = MOCK_DATA.filter(
+  const BusinessItemDetails = MOCK_DATA.filter(
     (data) => Number(data.id) === Number(activeNavbarTitle)
   );
-  console.log("Business details", BusinessitemDetails);
+  console.log("Business details", BusinessItemDetails);
   return (
-    <div className="w-auto bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
+    <div className="max-w-[820px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
       
       <div className="flex justify-between items-center flex-wrap border-b border-border-color p-2">
-        <p>Application no -#{BusinessitemDetails[0].id}</p>
-        <p>Date: {BusinessitemDetails[0].date}</p>
+        <p>Application no -#{BusinessItemDetails[0].id}</p>
+        <p>Date: {BusinessItemDetails[0].date}</p>
       </div>
       <div className="flex justify-between items-center flex-wrap p-2 pt-5 border-b border-border-color">
         <div className="w-1/5">
           <h4>Business name</h4>
-          <p>{BusinessitemDetails[0].business_name}</p>
+          <p>{BusinessItemDetails[0].business_name}</p>
         </div>
         <div>
           <h4>Email</h4>
@@ -35,7 +35,7 @@ function ItemCard() {
         </div>
         <div>
           <h4>Type</h4>
-          <p>{BusinessitemDetails[0].type}</p>
+          <p>{BusinessItemDetails[0].type}</p>
         </div>
       </div>
       <div className="p-2 pt-5">
@@ -68,12 +68,12 @@ function ItemCard() {
             status:{" "}
             <span
               className={`${
-                BusinessitemDetails[0].status === "Completed"
+                BusinessItemDetails[0].status === "Completed"
                   ? "text-green-500"
                   : "text-red-500"
               }`}
             >
-              {BusinessitemDetails[0].status}
+              {BusinessItemDetails[0].status}
             </span>
           </p>
         </div>
