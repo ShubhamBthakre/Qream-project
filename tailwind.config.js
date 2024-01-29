@@ -14,6 +14,7 @@ export default {
       fontFamily: {
         podkova: "Podkova",
         poppins: "Poppins",
+        mitr:"Mitr",
       },
       transitionProperty: {
         width: "width",
