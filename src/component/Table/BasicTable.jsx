@@ -133,21 +133,30 @@ function BasicTable() {
                 className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
                 key={uuidv4()}
               >
-                {row.cells.map((cell) => (
-                  <td
-                    {...cell.getCellProps()}
-                    className="w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3"
-                    key={uuidv4()}
-                    onClick={() => setItemDetails(Number(row.id) + 1)}
-                  >
-                    <NavLink
-                      to="/registered-business-Item-details"
-                      className={"w-full"}
+                {row.cells.map((cell) => {
+                  console.log("cell :- ",cell.value)
+                  return (
+                    <td
+                      {...cell.getCellProps()}
+                      className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 ${
+                        cell.value === "Completed"
+                          ? "text-green-500"
+                          : cell.value === "In-progress"
+                          ? "text-red-500"
+                          : "text-slate-700"
+                      }`}
+                      key={uuidv4()}
+                      onClick={() => setItemDetails(Number(row.id) + 1)}
                     >
-                      {cell.render("Cell")}{" "}
-                    </NavLink>
-                  </td>
-                ))}
+                      <NavLink
+                        to="/registered-business-Item-details"
+                        className={"w-full"}
+                      >
+                        {cell.render("Cell")}{" "}
+                      </NavLink>
+                    </td>
+                  );
+                })}
               </tr>
             );
           })}
