@@ -91,79 +91,82 @@ function BasicTable() {
       </select>
 
       <div className="border border-slate-300 rounded-xl">
-      <table
-        {...getTableProps}
-        className="w-full border-collapse border table-fixed border-slate-300  rounded-t-xl overflow-hidden"
-      >
-        <thead className="text-center p-2">
-          {headerGroups.map((headerGroup) => (
-            <tr
-              {...headerGroup.getHeaderGroupProps()}
-              className="bg-light-blue "
-              key={uuidv4()}
-            >
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300 font-poppins"
-                  key={uuidv4()}
-                >
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <TbSortDescendingLetters />
-                      ) : (
-                        <AiOutlineSortAscending />
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
+        <table
+          {...getTableProps}
+          className="w-full border-collapse border table-fixed border-slate-300  rounded-t-xl overflow-hidden"
+        >
+          <thead className="text-center p-2">
+            {headerGroups.map((headerGroup) => (
               <tr
-                {...row.getRowProps()}
-                onClick={() => setActiveNavbarTitle(Number(row.id) + 1)}
-                className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
+                {...headerGroup.getHeaderGroupProps()}
+                className="bg-light-blue "
                 key={uuidv4()}
               >
-                {row.cells.map((cell) => {
-                  console.log("cell :- ", cell.value);
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 font-poppins ${
-                        cell.value === "Completed"
-                          ? "text-green-500"
-                          : cell.value === "In-progress"
-                          ? "text-red-500"
-                          : "text-slate-700"
-                      }`}
-                      key={uuidv4()}
-                      onClick={() => setItemDetails(Number(row.id) + 1)}
-                    >
-                      <NavLink
-                        to="/registered-business-Item-details"
-                        className={"w-full"}
-                      >
-                        {cell.render("Cell")}{" "}
-                      </NavLink>
-                    </td>
-                  );
-                })}
+                {headerGroup.headers.map((column) => (
+                  <th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300 font-poppins"
+                    key={uuidv4()}
+                  >
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <TbSortDescendingLetters />
+                        ) : (
+                          <AiOutlineSortAscending />
+                        )
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-        {/* <tfoot>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps}>
+            {page.map((row) => {
+              prepareRow(row);
+              console.log("row", row.values.application_no);
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  onClick={() =>
+                    setActiveNavbarTitle(row.values.application_no)
+                  }
+                  className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
+                  key={uuidv4()}
+                >
+                  {row.cells.map((cell) => {
+                    console.log("cell :- ", cell.value);
+                    return (
+                      <td
+                        {...cell.getCellProps()}
+                        className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 font-poppins ${
+                          cell.value === "Completed"
+                            ? "text-green-500"
+                            : cell.value === "In-progress"
+                            ? "text-red-500"
+                            : "text-slate-700"
+                        }`}
+                        key={uuidv4()}
+                        onClick={() => setItemDetails(Number(row.id) + 1)}
+                      >
+                        <NavLink
+                          to="/registered-business-Item-details"
+                          className={"w-full"}
+                        >
+                          {cell.render("Cell")}{" "}
+                        </NavLink>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+          {/* <tfoot>
         {footerGroups.map((footerGroup) => (
           <tr {...footerGroup.getFooterGroupProps()}>
             {footerGroup.headers.map((column) => (
@@ -173,7 +176,7 @@ function BasicTable() {
         ))}
       </tfoot> */}
 
-        {/* <pre>
+          {/* <pre>
         <code>
           {JSON.stringify(
             {
@@ -184,9 +187,9 @@ function BasicTable() {
           )}
         </code>
       </pre> */}
-      </table>
+        </table>
 
-      {/* <select
+        {/* <select
           value={pageSize}
           onChange={(e) => setPageSize(Number(e.target.value))}
         >
@@ -195,62 +198,66 @@ function BasicTable() {
           ))}
         </select> */}
 
-      <div className="w-full flex items-center gap-x-2 mt-2 font-poppins">
-        <div>
-          <span className="p-1 md:p-2 text-base md:text-md font-medium">{pageIndex + 1}</span> of{" "}
-          <span className="p-1 md:p-2 text-base md:text-md font-medium">{pageOptions.length}</span>
+        <div className="w-full flex items-center gap-x-2 mt-2 font-poppins">
+          <div>
+            <span className="p-1 md:p-2 text-base md:text-md font-medium">
+              {pageIndex + 1}
+            </span>{" "}
+            of{" "}
+            <span className="p-1 md:p-2 text-base md:text-md font-medium">
+              {pageOptions.length}
+            </span>
+          </div>
+
+          <button
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+            className={`p-2 md:p-3 text-base md:text-md font-medium ${
+              !canPreviousPage
+                ? "opacity-40 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
+          >
+            {"<<First"}
+          </button>
+
+          <button
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+            className={`p-2 md:p-3 text-base md:text-md font-medium ${
+              !canPreviousPage
+                ? "opacity-40 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
+          >
+            {"<Prev"}
+          </button>
+
+          <button
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+            className={`p-2 md:p-3 text-base md:text-md font-medium ${
+              !canNextPage
+                ? "opacity-60 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
+          >
+            {"Next>"}
+          </button>
+
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+            className={`p-2 md:p-3 text-base md:text-md font-medium ${
+              !canNextPage
+                ? "opacity-60 cursor-not-allowed"
+                : "opacity-1 cursor-pointer"
+            }`}
+          >
+            {"Last>>"}
+          </button>
         </div>
-
-        <button
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-md font-medium ${
-            !canPreviousPage
-              ? "opacity-40 cursor-not-allowed"
-              : "opacity-1 cursor-pointer"
-          }`}
-        >
-          {"<<First"}
-        </button>
-
-        <button
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-md font-medium ${
-            !canPreviousPage
-              ? "opacity-40 cursor-not-allowed"
-              : "opacity-1 cursor-pointer"
-          }`}
-        >
-          {"<Prev"}
-        </button>
-
-        <button
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-md font-medium ${
-            !canNextPage
-              ? "opacity-60 cursor-not-allowed"
-              : "opacity-1 cursor-pointer"
-          }`}
-        >
-          {"Next>"}
-        </button>
-
-        <button
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-md font-medium ${!canNextPage
-          ? "opacity-60 cursor-not-allowed"
-          : "opacity-1 cursor-pointer"
-      }`}
-        >
-          {"Last>>"}
-        </button>
       </div>
-
-      </div>
-     
     </div>
   );
 }

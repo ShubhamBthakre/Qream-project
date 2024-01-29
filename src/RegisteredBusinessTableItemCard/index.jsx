@@ -10,7 +10,7 @@ function ItemCard() {
   console.log("item details", itemDetails);
 
   const BusinessItemDetails = MOCK_DATA.filter(
-    (data) => Number(data.id) === Number(activeNavbarTitle)
+    (data) => Number(data.application_no) === Number(activeNavbarTitle)
   );
   console.log("Business details", BusinessItemDetails);
   return (
