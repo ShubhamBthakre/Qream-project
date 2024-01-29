@@ -23,7 +23,7 @@ function Sidebar() {
   return (
     <div className="flex fixed h-full">
       <div
-        className={`h-screen p-5 pt-8 bg-dark-purple relative ${
+        className={`h-screen bg-dark-purple relative ${
           isNavbarOpen ? "w-62" : "w-20"
         }`}
       >
@@ -36,14 +36,14 @@ function Sidebar() {
         />
 
         <div
-          className={`w-full flex flex-col md:flex-row text-white font-medium text-2xl md:text-4xl`}
+          className={`min-h-16 md:min-h-20 w-full flex justify-center items-center border-b-[1px] text-white font-medium text-2xl md:text-4xl`}
         >
           <MdBusinessCenter
             color="white"
             className={`duration-500 ${isNavbarOpen && "hidden"} `}
           />
           <h1
-            className={`origin-left  duration-300 ${
+            className={`origin-left  duration-300 px-5 ${
               !isNavbarOpen && "hidden"
             } font-podova`}
           >
@@ -51,7 +51,7 @@ function Sidebar() {
           </h1>
         </div>
         <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl">
-          <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl">
+          <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl  px-5">
             <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
               <NavLink to="/" className={`no-underline`}>
                 <div
