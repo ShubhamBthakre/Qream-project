@@ -79,7 +79,7 @@ function BasicTable() {
   const { pageIndex, pageSize } = state;
 
   return (
-    <div>
+    <div className="w-full">
       <select
         value={selectedOption}
         onChange={handleSelectChange}
@@ -134,7 +134,7 @@ function BasicTable() {
                 key={uuidv4()}
               >
                 {row.cells.map((cell) => {
-                  console.log("cell :- ",cell.value)
+                  console.log("cell :- ", cell.value);
                   return (
                     <td
                       {...cell.getCellProps()}
@@ -193,57 +193,58 @@ function BasicTable() {
           ))}
         </select> */}
 
-      <div className="w-full flex gap-x-4 text-xl">
-        {/* <div>
-            <button
-              onClick={() => gotoPage(0)}
-              disabled={!canPreviousPage}
-              className="cursor-pointer"
-            >
-              {"<< "}
-            </button>
-          </div> */}
-
-        <div className="w-full flex items-center gap-x-2 mt-2">
-          <button
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${
-              !canPreviousPage
-                ? "opacity-40 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
-          >
-            {"Prev"}
-          </button>
-
-          <div>
-            <span className="font-semibold">{pageIndex + 1}</span> of{" "}
-            <span className="font-semibold">{pageOptions.length}</span>
-          </div>
-
-          <button
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-            className={`p-2 md:p-3 bg-light-sky hover:bg-light-blue rounded-full text-base md:text-lg font-semibold ${
-              !canNextPage
-                ? "opacity-40 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
-          >
-            {"Prev"}
-          </button>
-
-          {/* <div>
-            <button
-              onClick={() => gotoPage(pageCount - 1)}
-              disabled={!canNextPage}
-              className="cursor-pointer"
-            >
-              {">>"}
-            </button>
-          </div> */}
+      <div className="w-full flex justify-center items-center gap-x-2 mt-2 ">
+        <div>
+          <span className="p-1 md:p-2 text-base md:text-lg font-semibold">{pageIndex + 1}</span> of{" "}
+          <span className="p-1 md:p-2 text-base md:text-lg font-semibold">{pageOptions.length}</span>
         </div>
+
+        <button
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+            !canPreviousPage
+              ? "opacity-40 cursor-not-allowed"
+              : "opacity-1 cursor-pointer"
+          }`}
+        >
+          {"<<First"}
+        </button>
+
+        <button
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+            !canPreviousPage
+              ? "opacity-40 cursor-not-allowed"
+              : "opacity-1 cursor-pointer"
+          }`}
+        >
+          {"<Prev"}
+        </button>
+
+        <button
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+            !canNextPage
+              ? "opacity-60 cursor-not-allowed"
+              : "opacity-1 cursor-pointer"
+          }`}
+        >
+          {"Next>"}
+        </button>
+
+        <button
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${!canNextPage
+          ? "opacity-60 cursor-not-allowed"
+          : "opacity-1 cursor-pointer"
+      }`}
+        >
+          {"Last>>"}
+        </button>
       </div>
     </div>
   );
