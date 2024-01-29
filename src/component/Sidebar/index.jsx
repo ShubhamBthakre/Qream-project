@@ -51,19 +51,19 @@ function Sidebar() {
           </h1>
         </div>
         <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl ">
-          <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl  px-5">
-            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 font-podkova">
+          <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium text-base md:text-xl  px-5">
+            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 ">
               <NavLink to="/" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
                   onClick={() => setActiveNavbarTitle("Dashboard")}
                 >
                   <RxDashboard className={`${isNavbarOpen && "hidden"}`} />
-                  <p className={`${!isNavbarOpen && "hidden"}`}>Dashboard</p>
+                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>Dashboard</p>
                 </div>
               </NavLink>
             </li>
-            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 font-podkova">
+            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 ">
               <NavLink to="/registered-business" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -72,13 +72,13 @@ function Sidebar() {
                   <GiArchiveRegister
                     className={`${isNavbarOpen && "hidden"}`}
                   />
-                  <p className={`${!isNavbarOpen && "hidden"}`}>
+                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>
                     Registered Business
                   </p>
                 </div>
               </NavLink>
             </li>
-            <li className="p-4 pl-0  cursor-pointer hover:text-blue-200 font-podkova">
+            <li className="p-4 pl-0  cursor-pointer hover:text-blue-200 ">
               <NavLink to="/documents" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -87,7 +87,7 @@ function Sidebar() {
                   <IoDocumentsOutline
                     className={`${isNavbarOpen && "hidden"}`}
                   />
-                  <p className={`${!isNavbarOpen && "hidden"}`}>Document</p>
+                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>Document</p>
                 </div>
               </NavLink>
             </li>

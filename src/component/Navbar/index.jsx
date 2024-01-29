@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav
       className={`flex items-center min-h-16 md:min-h-20  bg-light-blue overflow-hidden ${
-        isNavbarOpen ? "ml-56" : "ml-20"
+        isNavbarOpen ? "ml-56 pl-8" : "ml-20"
       }`}
     >
       <div className="text-black w-full flex justify-between items-center px-4 md:px-12">

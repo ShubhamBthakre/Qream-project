@@ -89,6 +89,8 @@ function BasicTable() {
         <option>Corporation</option>
         <option>LCC</option>
       </select>
+
+      <div className="border border-slate-300 rounded-xl">
       <table
         {...getTableProps}
         className="w-full border-collapse border table-fixed border-slate-300  rounded-t-xl overflow-hidden"
@@ -193,16 +195,16 @@ function BasicTable() {
           ))}
         </select> */}
 
-      <div className="w-full flex justify-center items-center gap-x-2 mt-2 font-poppins">
+      <div className="w-full flex items-center gap-x-2 mt-2 font-poppins">
         <div>
-          <span className="p-1 md:p-2 text-base md:text-md font-semibold">{pageIndex + 1}</span> of{" "}
-          <span className="p-1 md:p-2 text-base md:text-md font-semibold">{pageOptions.length}</span>
+          <span className="p-1 md:p-2 text-base md:text-md font-medium">{pageIndex + 1}</span> of{" "}
+          <span className="p-1 md:p-2 text-base md:text-md font-medium">{pageOptions.length}</span>
         </div>
 
         <button
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-medium ${
             !canPreviousPage
               ? "opacity-40 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -214,7 +216,7 @@ function BasicTable() {
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-medium ${
             !canPreviousPage
               ? "opacity-40 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -226,7 +228,7 @@ function BasicTable() {
         <button
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-medium ${
             !canNextPage
               ? "opacity-60 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -238,7 +240,7 @@ function BasicTable() {
         <button
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-md font-semibold ${!canNextPage
+          className={`p-2 md:p-3 text-base md:text-md font-medium ${!canNextPage
           ? "opacity-60 cursor-not-allowed"
           : "opacity-1 cursor-pointer"
       }`}
@@ -246,6 +248,9 @@ function BasicTable() {
           {"Last>>"}
         </button>
       </div>
+
+      </div>
+     
     </div>
   );
 }
