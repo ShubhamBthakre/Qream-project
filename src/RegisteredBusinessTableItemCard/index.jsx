@@ -14,7 +14,7 @@ function ItemCard() {
   );
   console.log("Business details", BusinessItemDetails);
   return (
-    <div className="max-w-[820px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
+    <div className="max-w-[1200px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
       
       <div className="flex justify-between items-center flex-wrap border-b border-border-color p-2">
         <p>Application no -#{BusinessItemDetails[0].id}</p>

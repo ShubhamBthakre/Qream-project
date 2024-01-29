@@ -83,7 +83,7 @@ function BasicTable() {
       <select
         value={selectedOption}
         onChange={handleSelectChange}
-        className="outline-none mb-5 border border-slate-300 p-2 rounded-md"
+        className="outline-none mb-5 border border-slate-300 p-2 rounded-md font-poppins"
       >
         <option>All</option>
         <option>Corporation</option>
@@ -103,7 +103,7 @@ function BasicTable() {
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300"
+                  className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300 font-poppins"
                   key={uuidv4()}
                 >
                   {column.render("Header")}
@@ -138,7 +138,7 @@ function BasicTable() {
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 ${
+                      className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 font-poppins ${
                         cell.value === "Completed"
                           ? "text-green-500"
                           : cell.value === "In-progress"
