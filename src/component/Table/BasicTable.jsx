@@ -193,16 +193,16 @@ function BasicTable() {
           ))}
         </select> */}
 
-      <div className="w-full flex justify-center items-center gap-x-2 mt-2 ">
+      <div className="w-full flex justify-center items-center gap-x-2 mt-2 font-poppins">
         <div>
-          <span className="p-1 md:p-2 text-base md:text-lg font-semibold">{pageIndex + 1}</span> of{" "}
-          <span className="p-1 md:p-2 text-base md:text-lg font-semibold">{pageOptions.length}</span>
+          <span className="p-1 md:p-2 text-base md:text-md font-semibold">{pageIndex + 1}</span> of{" "}
+          <span className="p-1 md:p-2 text-base md:text-md font-semibold">{pageOptions.length}</span>
         </div>
 
         <button
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
             !canPreviousPage
               ? "opacity-40 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -214,7 +214,7 @@ function BasicTable() {
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
-          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
             !canPreviousPage
               ? "opacity-40 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -226,7 +226,7 @@ function BasicTable() {
         <button
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${
+          className={`p-2 md:p-3 text-base md:text-md font-semibold ${
             !canNextPage
               ? "opacity-60 cursor-not-allowed"
               : "opacity-1 cursor-pointer"
@@ -238,7 +238,7 @@ function BasicTable() {
         <button
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
-          className={`p-2 md:p-3 text-base md:text-lg font-semibold ${!canNextPage
+          className={`p-2 md:p-3 text-base md:text-md font-semibold ${!canNextPage
           ? "opacity-60 cursor-not-allowed"
           : "opacity-1 cursor-pointer"
       }`}
