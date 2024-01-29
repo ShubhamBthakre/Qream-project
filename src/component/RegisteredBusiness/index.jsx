@@ -3,7 +3,7 @@ import RegisteredBusinessTable from "../RegisteredBusinessTable";
 
 function RegisteredBusiness() {
   return (
-    <div className="h-full max-w-[820px]">
+    <div className="h-full max-w-[1200px] ">
       <RegisteredBusinessTable />
     </div>
   );

@@ -6,14 +6,14 @@ import { data } from "autoprefixer";
 function Dashboard() {
   return (
     <div
-      className={`w-full flex flex-col min-h-full shadow-lg p-2 md:p-5`}
+      className={`w-full flex flex-col min-h-full`}
     >
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-between">
         <DashboardCard title="New business" count="12" label="Day" />
         <DashboardCard title="In progress" count="06" label="Type" />
         <DashboardCard title="Complete" count="06" label="Type" />
       </div>
-      <div className="min-w-fit">
+      <div className="w-full">
         <PieChartCard label="State" data={data} />
       </div>
     </div>

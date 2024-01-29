@@ -12,9 +12,9 @@ export default {
         "border-color": "rgba(0, 0, 0, 0.28)",
       },
       fontFamily: {
-        podkova: "Podkova",
-        poppins: "Poppins",
-        mitr:"Mitr",
+        podkova: ['Podkova'],
+        poppins: ['Poppins'],
+        mitr:['Mitr'],
       },
       transitionProperty: {
         width: "width",

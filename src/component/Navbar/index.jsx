@@ -8,18 +8,18 @@ function Navbar() {
 
   return (
     <nav
-      className={`flex items-center min-h-16 md:min-h-20  bg-light-blue ${
-        isNavbarOpen ? "ml-72" : "ml-20"
+      className={`flex items-center min-h-16 md:min-h-20  bg-light-blue overflow-hidden ${
+        isNavbarOpen ? "ml-56" : "ml-20"
       }`}
     >
-      <div className="text-black w-full flex justify-between items-center px-4 md:px-12 font-poppins">
-        <h2 className="text-2xl md:text-3xl font-semibold">
+      <div className="text-black w-full flex justify-between items-center px-4 md:px-12">
+        <h2 className="text-xl md:text-2xl font-semibold font-poppins">
           {activeNavbarTitle}
         </h2>
-        <div className="flex items-center gap-x-2 text-base md:text-xl relative">
+        <div className="flex items-center gap-x-2 text-base md:text-lg relative">
           <FaRegUserCircle />
-          <p className="font-medium ">Elon Musk</p>
-          <div className="">
+          <p className="font-medium font-poppins">Elon Musk</p>
+          <div className="font-podkova">
             <FaChevronDown
               className={`cursor-pointer ${isLogOptionVisible?"rotate-180":"rotate-0"}`}
               onClick={() => setLogOptionVisible(!isLogOptionVisible)}
@@ -33,7 +33,7 @@ function Navbar() {
               <option value="logout" >logout</option>
             </select> */}
 
-            <button className={`text-base absolute right-0 p-1 rounded-xl cursor-pointer hover:bg-blue-200 ${
+            <button className={`font-poppins text-base absolute right-0 p-1 rounded-xl cursor-pointer hover:bg-blue-200 ${
                 isLogOptionVisible ? "inline" : "hidden"
               }`}>logout</button>
           </div>

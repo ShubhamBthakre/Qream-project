@@ -83,7 +83,7 @@ function BasicTable() {
       <select
         value={selectedOption}
         onChange={handleSelectChange}
-        className="outline-none"
+        className="outline-none mb-5 border border-slate-300 p-2 rounded-md"
       >
         <option>All</option>
         <option>Corporation</option>
@@ -91,7 +91,7 @@ function BasicTable() {
       </select>
       <table
         {...getTableProps}
-        className="w-full border-collapse border border-slate-300  rounded-t-xl overflow-hidden"
+        className="w-full border-collapse border table-fixed border-slate-300  rounded-t-xl overflow-hidden"
       >
         <thead className="text-center p-2">
           {headerGroups.map((headerGroup) => (

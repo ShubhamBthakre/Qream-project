@@ -13,7 +13,7 @@ function Layout() {
           <Sidebar />
           <div className="flex flex-col w-full min-h-full overflow-hidden">
             <Navbar />
-            <div className={`min-h-full mt-1 p-1 md:p-5 overflow-y-auto ${isNavbarOpen?'ml-72':'ml-20'}`}>
+            <div className={`min-h-full mt-2 md:mt-5 px-4 md:px-12 overflow-y-auto ${isNavbarOpen?'ml-56':'ml-20'}`}>
               <Outlet />
             </div>
           </div>

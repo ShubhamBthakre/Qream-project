@@ -43,16 +43,16 @@ function Sidebar() {
             className={`duration-500 ${isNavbarOpen && "hidden"} `}
           />
           <h1
-            className={`origin-left  duration-300 px-5 ${
+            className={`origin-left  duration-300 px-5 text-2xl ${
               !isNavbarOpen && "hidden"
-            } font-podova`}
+            } font-mitr`}
           >
             BetterBussiness
           </h1>
         </div>
-        <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl">
+        <div className="w-full min-h-full my-4 md:my-8 text-lg md:text-xl ">
           <ul className="w-full m-0 p-0 flex flex-col gap-2 text-white font-medium font-poppins text-base md:text-xl  px-5">
-            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
+            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 font-podkova">
               <NavLink to="/" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -63,7 +63,7 @@ function Sidebar() {
                 </div>
               </NavLink>
             </li>
-            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200">
+            <li className="border-b-[1px] p-4 pl-0 border-inherit cursor-pointer hover:text-blue-200 font-podkova">
               <NavLink to="/registered-business" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
@@ -78,7 +78,7 @@ function Sidebar() {
                 </div>
               </NavLink>
             </li>
-            <li className="p-4 pl-0  cursor-pointer hover:text-blue-200">
+            <li className="p-4 pl-0  cursor-pointer hover:text-blue-200 font-podkova">
               <NavLink to="/documents" className={`no-underline`}>
                 <div
                   className="flex items-center gap-x-2"
