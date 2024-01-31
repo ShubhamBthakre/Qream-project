@@ -2,6 +2,7 @@ import Layout from "./Layout";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  json,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -27,38 +28,38 @@ const router = createBrowserRouter(
 );
 
 function App() {
- 
+  // Get the stored state from localStorage
+  let initialState = localStorage.getItem("myState");
+  console.log("initialState", initialState);
 
-
-  let initialState = JSON.parse(localStorage.getItem("myState"));
-
-  if (!initialState) {
+  if (initialState) {
+    // Parse the stored state if it exists
+    initialState = JSON.parse(initialState);
+  } else {
+    // Set a default initial state if no stored state is found
     initialState = {
       isNavbarOpen: true,
       activeNavbarTitle: "Dashboard",
     };
   }
 
-  console.log("initialState", initialState);
-
-  
+  // Use the state hook to manage the state
   let [myState, setMyState] = useState(initialState);
+  console.log("myState", myState);
 
+  // Update localStorage whenever the state changes
   useEffect(() => {
-    localStorage.setItem("myState", JSON.stringify(initialState));
-    console.log("myState",myState)
+    localStorage.setItem("myState", JSON.stringify(myState));
+    console.log("myState", myState);
   }, [myState]);
 
-
-  const [activeNavbarTitle, setTitle] = useState(initialState.activeNavbarTitle);
+  const [activeNavbarTitle, setTitle] = useState(myState.activeNavbarTitle);
   const [data, setData] = useState(null);
-  const [isNavbarOpen, setOpen] = useState(initialState.isNavbarOpen);
- 
+  const [isNavbarOpen, setOpen] = useState(myState.isNavbarOpen);
 
   const setActiveNavbarTitle = (title) => {
     setTitle(title);
-    setMyState({...myState,activeNavbarTitle:title})
-    
+    setMyState({ ...myState, activeNavbarTitle: title });
   };
 
   const setItemDetails = (data) => {
@@ -67,8 +68,7 @@ function App() {
 
   const setNavbarOpen = (isNavbarOpen) => {
     setOpen(isNavbarOpen);
-    setMyState({...myState,isNavbarOpen:isNavbarOpen})
-    
+    setMyState({ ...myState, isNavbarOpen: isNavbarOpen });
   };
 
   return (
