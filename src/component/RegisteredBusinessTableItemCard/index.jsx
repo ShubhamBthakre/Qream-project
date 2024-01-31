@@ -4,33 +4,33 @@ function ItemCard({ BusinessItemDetails }) {
   console.log("Business details in Item card", BusinessItemDetails);
 
   return (
-    <div className="max-w-[1200px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
+    <div className="max-w-[1200px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-xs md:text-sm font-poppins">
       <div className="flex justify-between items-center flex-wrap border-b border-border-color p-2">
-        <p>Application no -#{BusinessItemDetails[0].id}</p>
+        <p>Application no -#{BusinessItemDetails[0].application_no}</p>
         <p>Date: {BusinessItemDetails[0].date}</p>
       </div>
       <div className="flex justify-between items-center flex-wrap p-2 pt-5 border-b border-border-color">
         <div className="w-1/5">
-          <h4>Business name</h4>
+          <h4 className="font-semibold">Business name</h4>
           <p>{BusinessItemDetails[0].business_name}</p>
         </div>
         <div>
-          <h4>Email</h4>
+          <h4 className="font-semibold">Email</h4>
           <p>google@google.com</p>
         </div>
         <div>
-          <h4>Phone no</h4>
+          <h4 className="font-semibold">Phone no</h4>
           <p>9999999999</p>
         </div>
         <div>
-          <h4>Type</h4>
+          <h4 className="font-semibold">Type</h4>
           <p>{BusinessItemDetails[0].type}</p>
         </div>
       </div>
       <div className="p-2 pt-5">
-        <h4>Location</h4>
+        <h4 className="font-semibold">Location</h4>
       </div>
-      <div className="flex justify-between items-center flex-wrap p-2 pt-5 border-b border-border-color">
+      <div className="flex justify-between items-center flex-wrap p-2 pt-2 border-b border-border-color">
         <div>
           <p>Street number/name</p>
           <p>Bangalore</p>
@@ -50,16 +50,19 @@ function ItemCard({ BusinessItemDetails }) {
       </div>
       <div className="flex justify-between flex-wrap items-center p-2 pt-5">
         <div>
-          <p> package: starRight</p>
+          <p>
+            {" "}
+            package: <span className="font-semibold">starRight</span>
+          </p>
         </div>
         <div>
           <p>
             status:{" "}
             <span
-              className={`${
+              className={`font-semibold ${
                 BusinessItemDetails[0].status === "Completed"
                   ? "text-green-500"
-                  : "text-red-500"
+                  : "text-orange-500"
               }`}
             >
               {BusinessItemDetails[0].status}

@@ -121,7 +121,7 @@ function RegisteredBusinessTable() {
               </td>
               <td
                 className={`border-collapse border border-slate-200 p-1 md:p-3 cursor-pointer`}
-                onClick={() => setActiveNavbarTitle(data.application_no)}
+                onClick={() => setActiveNavbarTitle("#" + data.application_no)}
               >
                 <NavLink
                   to={`registered-business/details/${data.application_no}`}

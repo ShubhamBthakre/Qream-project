@@ -24,14 +24,6 @@ function Navbar() {
               className={`cursor-pointer ${isLogOptionVisible?"rotate-180":"rotate-0"}`}
               onClick={() => setLogOptionVisible(!isLogOptionVisible)}
             />
-            {/* <select
-              id="dropdown"
-              className={` bg-white text-sm absolute p-1 rounded-xl cursor-pointer${
-                isLogOptionVisible ? "inline" : "invisible"
-              }`}
-            >
-              <option value="logout" >logout</option>
-            </select> */}
 
             <button className={`font-poppins text-base absolute right-0 p-1 rounded-xl cursor-pointer hover:bg-blue-200 ${
                 isLogOptionVisible ? "inline" : "hidden"

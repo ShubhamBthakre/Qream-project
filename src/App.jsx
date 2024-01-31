@@ -2,7 +2,6 @@ import Layout from "./Layout";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  json,
   Route,
   RouterProvider,
 } from "react-router-dom";
