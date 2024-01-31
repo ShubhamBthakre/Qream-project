@@ -5,9 +5,9 @@ import { PieChart, Pie, Cell } from "recharts";
 function PieChartCard({ label }) {
   const isSmallScreen = useMediaQuery({ query: "(max-width: 640px)" });
   const isMediumScreen = useMediaQuery({ query: "(max-width: 768px)" });
-  const pieChartWidth = isSmallScreen ? 150 : isMediumScreen ? 250 : 350;
-  const pieChartHeight = isSmallScreen ? 100 : isMediumScreen ? 180 : 240;
-  const pieOuterRadius = isSmallScreen ? 70 : isMediumScreen ? 80 : 100;
+  const pieChartWidth = isSmallScreen ? 180 : isMediumScreen ? 250 : 350;
+  const pieChartHeight = isSmallScreen ? 150 : isMediumScreen ? 180 : 240;
+  const pieOuterRadius = isSmallScreen ? 65 : isMediumScreen ? 80 : 100;
 
   const data = [
     { name: "LCC", value: 15 },
@@ -45,7 +45,7 @@ function PieChartCard({ label }) {
   };
 
   return (
-    <div className="p-1 md:p-5 bg-medium-sky w-full max-w-[580px] max-h-[300px] rounded-lg">
+    <div className="p-1 md:p-5 bg-medium-sky w-full max-w-[580px] max-h-[400px] rounded-lg">
       <div className="flex justify-end">
         <label htmlFor="select">{label}</label>
         <select id="select" className=" bg-medium-sky">

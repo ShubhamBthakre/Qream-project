@@ -66,8 +66,8 @@ function RegisteredBusinessTable() {
   };
 
   return (
-    <div className="w-full font-poppins overflow-hidden">
-      <table className="w-full border-collapse border table-fixed border-slate-400  rounded-t-xl overflow-hidden">
+    <div className="w-full font-poppins">
+      <table className="w-full border-collapse border table-fixed border-slate-400  break-words rounded-t-xl">
         <thead className="">
           <tr className="bg-light-blue text-blue-900 text-[10px] lg:text-sm border-collapse border border-slate-400 ">
             <th className="p-1 md:p-3 border border-slate-300 border-collapse flex flex-col items-start md:flex-row md:items-center">
@@ -82,7 +82,7 @@ function RegisteredBusinessTable() {
               <select
                 value={selectedOption}
                 onChange={handleSelectChange}
-                className="outline-none border-none bg-transparent text-[10px] lg:text-sm w-full max-w-[60px] overflow-clip"
+                className="outline-none border-none bg-transparent text-[10px] lg:text-sm w-full max-w-[60px]"
               >
                 <option>All</option>
                 <option>Corporation</option>
@@ -103,7 +103,7 @@ function RegisteredBusinessTable() {
         <tbody>
           {mockData.slice(page * 10 - 10, page * 10).map((data) => (
             <tr
-              className="even:bg-light-sky  hover:bg-slate-300 w-auto text-[9px] lg:text-sm text-wrap font-poppins border-collapse text-black border border-slate-400"
+              className="even:bg-light-sky  hover:bg-slate-300 w-auto text-[9px] lg:text-sm text-wrap border-collapse text-black border border-slate-400 break-words"
               key={data.id}
             >
               <td
