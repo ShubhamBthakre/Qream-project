@@ -1,17 +1,13 @@
 import React from "react";
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from "react-responsive";
 import { PieChart, Pie, Cell } from "recharts";
 
-
-
-function PieChartCard({label}) {
-  const isSmallScreen = useMediaQuery({ query: '(max-width: 640px)' });
-  const isMediumScreen = useMediaQuery({ query: '(max-width: 768px)'});
+function PieChartCard({ label }) {
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 640px)" });
+  const isMediumScreen = useMediaQuery({ query: "(max-width: 768px)" });
   const pieChartWidth = isSmallScreen ? 180 : isMediumScreen ? 300 : 400;
   const pieChartHeight = isSmallScreen ? 180 : isMediumScreen ? 300 : 400;
   const pieOuterRadius = isSmallScreen ? 60 : isMediumScreen ? 80 : 100;
-
-
 
   const data = [
     { name: "LCC", value: 15 },
@@ -19,7 +15,7 @@ function PieChartCard({label}) {
     { name: "DBA", value: 20 },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28",];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -50,12 +46,12 @@ function PieChartCard({label}) {
 
   return (
     <div className="p-1 md:p-5 bg-medium-sky w-full max-w-[500px] rounded-lg">
-        <div className="flex justify-end">
-          <label htmlFor="select">{label}</label>
-          <select id="select" className=" bg-medium-sky">
-            <option></option>
-          </select>
-        </div>
+      <div className="flex justify-end">
+        <label htmlFor="select">{label}</label>
+        <select id="select" className=" bg-medium-sky">
+          <option></option>
+        </select>
+      </div>
 
       <PieChart width={pieChartWidth} height={pieChartHeight}>
         <Pie

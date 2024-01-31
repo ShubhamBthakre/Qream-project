@@ -1,17 +1,25 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useTable, useSortBy, usePagination, useRowSelect } from "react-table";
 import MOCK_DATA from "../../assets/MOCK_DATA.json";
-import { COLUMNS } from "./column";
-import { AiOutlineSortAscending } from "react-icons/ai";
-import { TbSortDescendingLetters } from "react-icons/tb";
-import { Checkbox } from "./RowSelection";
 import { useBusinessContext } from "../../context/businessContext";
 import { NavLink } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 function BasicTable() {
+  const { setActiveNavbarTitle, setItemDetails } = useBusinessContext();
   const [mockData, setMockData] = useState(MOCK_DATA);
   const [selectedOption, setSelectedOption] = useState("All");
+  const [isAllRowSelected, setAllRowSelected] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const selectedPageHandler = (selectedPage) => {
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= mockData.length / 10 &&
+      selectedPage !== page
+    ) {
+      setPage(selectedPage);
+    }
+  };
 
   useEffect(() => {
     if (selectedOption === "All") {
@@ -25,239 +33,160 @@ function BasicTable() {
   }, [selectedOption]);
 
   //to improve performance we use useMemo
-  const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => mockData, [mockData]);
-  const { setActiveNavbarTitle, setItemDetails } = useBusinessContext();
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useSortBy,
-    usePagination,
-    useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <Checkbox {...getToggleAllRowsSelectedProps()} />
-          ),
-          Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />,
-        },
-        ...columns,
-      ]);
+  const allIds = mockData.map((data) => data.id);
+
+  useEffect(() => {
+    if (isAllRowSelected === true) {
+      setSelectedRows([...allIds]);
+    } else {
+      setSelectedRows([]);
     }
-  );
+  }, [isAllRowSelected]);
 
-  console.log(tableInstance);
+  // Handle checkbox click
+  const handleCheckboxChange = (rowId) => {
+    const isSelected = selectedRows.includes(rowId);
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    footerGroups,
-    prepareRow,
-    setPageSize,
-    page,
-    nextPage,
-    canNextPage,
-    canPreviousPage,
-    pageOptions,
-    state,
-    gotoPage,
-    pageCount,
-    previousPage,
-    selectedFlatRows,
-  } = tableInstance;
-
-  const { pageIndex, pageSize } = state;
+    if (isSelected) {
+      // If already selected, remove from the selectedRows array
+      setSelectedRows(selectedRows.filter((id) => id !== rowId));
+    } else {
+      // If not selected, add to the selectedRows array
+      setSelectedRows([...selectedRows, rowId]);
+    }
+  };
 
   return (
-    <div className="w-full">
-      <select
-        value={selectedOption}
-        onChange={handleSelectChange}
-        className="outline-none mb-5 border border-slate-300 p-2 rounded-md font-poppins"
-      >
-        <option>All</option>
-        <option>Corporation</option>
-        <option>LCC</option>
-      </select>
-
-      <div className="border border-slate-300 rounded-xl">
-        <table
-          {...getTableProps}
-          className="w-full border-collapse border table-fixed border-slate-300  rounded-t-xl overflow-hidden"
-        >
-          <thead className="text-center p-2">
-            {headerGroups.map((headerGroup) => (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                className="bg-light-blue "
-                key={uuidv4()}
+    <div className="w-full font-poppins overflow-hidden">
+      <table className="w-full border-collapse border table-fixed border-slate-400  rounded-t-xl overflow-hidden">
+        <thead className="">
+          <tr className="bg-light-blue text-blue-900 text-[12px] md:text-base border-collapse border border-slate-400 ">
+            <th className="p-1 md:p-3 border border-slate-300 border-collapse flex flex-col md:flex-row">
+              <input
+                type="checkbox"
+                checked={isAllRowSelected}
+                value={isAllRowSelected}
+                name=""
+                id=""
+                onChange={(e) => setAllRowSelected(e.target.checked)}
+              />
+              <select
+                value={selectedOption}
+                onChange={handleSelectChange}
+                className="outline-none border-none bg-transparent text-[10px] md:text-base w-full overflow-hidden"
               >
-                {headerGroup.headers.map((column) => (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    className="p-1 md:p-3 text-left text-sm md:text-base border border-slate-300 font-poppins"
-                    key={uuidv4()}
-                  >
-                    {column.render("Header")}
-                    <span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <TbSortDescendingLetters />
-                        ) : (
-                          <AiOutlineSortAscending />
-                        )
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps}>
-            {page.map((row) => {
-              prepareRow(row);
-              console.log("row", row.values.application_no);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  onClick={() =>
-                    setActiveNavbarTitle(row.values.application_no)
-                  }
-                  className="even:bg-light-sky cursor-pointer hover:bg-sky-100"
-                  key={uuidv4()}
-                >
-                  {row.cells.map((cell) => {
-                    console.log("cell :- ", cell.value);
-                    return (
-                      <td
-                        {...cell.getCellProps()}
-                        className={`w-auto text-sm md:text-base text-wrap border-collapse border border-slate-200 p-1 md:p-3 font-poppins ${
-                          cell.value === "Completed"
-                            ? "text-green-500"
-                            : cell.value === "In-progress"
-                            ? "text-red-500"
-                            : "text-slate-700"
-                        }`}
-                        key={uuidv4()}
-                        onClick={() => setItemDetails(Number(row.id) + 1)}
-                      >
-                        <NavLink
-                          to="/registered-business-Item-details"
-                          className={"w-full"}
-                        >
-                          {cell.render("Cell")}{" "}
-                        </NavLink>
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-          {/* <tfoot>
-        {footerGroups.map((footerGroup) => (
-          <tr {...footerGroup.getFooterGroupProps()}>
-            {footerGroup.headers.map((column) => (
-              <td {...column.getFooterProps()}>{column.render("Footer")}</td>
-            ))}
+                <option>All</option>
+                <option>Corporation</option>
+                <option>LCC</option>
+              </select>
+            </th>
+            <th className="p-1 md:p-3 border border-slate-300">
+              Application No.
+            </th>
+            <th className="p-1 md:p-3 border border-slate-300">
+              Business Name
+            </th>
+            <th className="p-1 md:p-3 border border-slate-300">Type</th>
+            <th className="p-1 md:p-3 border border-slate-300">Date</th>
+            <th className="p-1 md:p-3 border border-slate-300">Status</th>
           </tr>
-        ))}
-      </tfoot> */}
-
-          {/* <pre>
-        <code>
-          {JSON.stringify(
-            {
-              selectedFlatRows: selectedFlatRows.map(row => row.original)
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre> */}
-        </table>
-
-        {/* <select
-          value={pageSize}
-          onChange={(e) => setPageSize(Number(e.target.value))}
-        >
-          {[5, 10].map((pageSize) => (
-            <option key={pageSize}> show {pageSize}</option>
+        </thead>
+        <tbody>
+          {mockData.slice(page * 10 - 10, page * 10).map((data) => (
+            <tr
+              className="even:bg-light-sky  hover:bg-slate-300 w-auto text-[12px] md:text-base text-wrap font-poppins border-collapse text-slate-700 border border-slate-400"
+              key={data.id}
+            >
+              <td
+                className={`border-collapse border border-slate-300 p-1 md:p-3`}
+              >
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  checked={selectedRows.includes(data.id)}
+                  onChange={() => handleCheckboxChange(data.id)}
+                  className="mr-2"
+                />
+                {data.id}
+              </td>
+              <td
+                className={`border-collapse border border-slate-200 p-1 md:p-3 cursor-pointer`}
+              >
+                <NavLink
+                  to={`registered-business-details/:${data.application_no}`}
+                >
+                  {data.application_no}
+                </NavLink>
+              </td>
+              <td
+                className={`border-collapse border border-slate-200 p-1 md:p-3`}
+              >
+                {data.business_name}
+              </td>
+              <td
+                className={`border-collapse border border-slate-200 p-1 md:p-3`}
+              >
+                {data.type}
+              </td>
+              <td
+                className={`border-collapse border border-slate-200 p-1 md:p-3`}
+              >
+                {data.date}
+              </td>
+              <td
+                className={`border-collapse border border-slate-200 p-1 md:p-3 ${
+                  data.status === "Completed"
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {data.status}
+              </td>
+            </tr>
           ))}
-        </select> */}
+        </tbody>
+      </table>
 
-        <div className="w-full flex items-center gap-x-2 mt-2 font-poppins">
-          <div>
-            <span className="p-1 md:p-2 text-base md:text-md font-medium">
-              {pageIndex + 1}
-            </span>{" "}
-            of{" "}
-            <span className="p-1 md:p-2 text-base md:text-md font-medium">
-              {pageOptions.length}
-            </span>
-          </div>
-
-          <button
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-            className={`p-2 md:p-3 text-base md:text-md font-medium ${
-              !canPreviousPage
-                ? "opacity-40 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
+      {mockData.length > 0 && (
+        <div className="flex justify-center items-center gap-1 p-3 text-lg lg:text-xl">
+          <span
+            className="p-2  border border-slate-400 outline-none cursor-pointer hover:bg-light-blue "
+            onClick={() => selectedPageHandler(page - 1)}
           >
-            {"<<First"}
-          </button>
+            ◀️
+          </span>
 
-          <button
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-            className={`p-2 md:p-3 text-base md:text-md font-medium ${
-              !canPreviousPage
-                ? "opacity-40 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
-          >
-            {"<Prev"}
-          </button>
+          {[...Array.from({ length: Math.ceil(mockData.length / 10) })].map(
+            (_, i) => {
+              return (
+                <span
+                  key={i}
+                  className={`p-2  border border-slate-400 outline-none cursor-pointer hover:bg-light-blue m-1  ${
+                    page === i + 1 ? "bg-light-blue" : ""
+                  }`}
+                  onClick={() => selectedPageHandler(i + 1)}
+                >
+                  {i + 1}
+                </span>
+              );
+            }
+          )}
 
-          <button
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-            className={`p-2 md:p-3 text-base md:text-md font-medium ${
-              !canNextPage
-                ? "opacity-60 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
+          <span
+            className="p-2  border border-slate-400 outline-none cursor-pointer hover:bg-light-blue"
+            onClick={() => selectedPageHandler(page + 1)}
           >
-            {"Next>"}
-          </button>
-
-          <button
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-            className={`p-2 md:p-3 text-base md:text-md font-medium ${
-              !canNextPage
-                ? "opacity-60 cursor-not-allowed"
-                : "opacity-1 cursor-pointer"
-            }`}
-          >
-            {"Last>>"}
-          </button>
+            ➡️
+          </span>
         </div>
-      </div>
+      )}
     </div>
   );
 }

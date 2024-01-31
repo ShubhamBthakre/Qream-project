@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       <Route path="registered-business" element={<RegisteredBusiness />} />
       <Route path="documents" element={<Documents />} />
       <Route
-        path="registered-business-Item-details"
+        path="registered-business-details/:applicationDetails"
         element={<RegisteredBusinessTableItemDetails />}
       />
     </Route>
