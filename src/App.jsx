@@ -18,11 +18,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Dashboard />} />
       <Route path="registered-business" element={<RegisteredBusiness />} />
-      <Route path="documents" element={<Documents />} />
+
       <Route
-        path="registered-business-details/:applicationDetails"
+        path="registered-business/registered-business/details/:applicationId"
         element={<RegisteredBusinessTableItemDetails />}
       />
+      <Route path="documents" element={<Documents />} />
     </Route>
   )
 );

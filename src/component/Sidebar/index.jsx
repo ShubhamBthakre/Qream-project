@@ -11,12 +11,13 @@ import { useBusinessContext } from "../../context/businessContext";
 function Sidebar() {
   const { setActiveNavbarTitle, isNavbarOpen, setNavbarOpen } =
     useBusinessContext();
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const isSmall = useMediaQuery({ query: "(max-width: 640px)" }); // sm breakpoint
+  const isSmall = useMediaQuery({ query: "(max-width: 800px)" }); // sm breakpoint
 
   useEffect(() => {
     if (isSmall) {
       setNavbarOpen(false);
+    } else {
+      setNavbarOpen(true);
     }
   }, [isSmall]);
 
@@ -59,7 +60,9 @@ function Sidebar() {
                   onClick={() => setActiveNavbarTitle("Dashboard")}
                 >
                   <RxDashboard className={`${isNavbarOpen && "hidden"}`} />
-                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>Dashboard</p>
+                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>
+                    Dashboard
+                  </p>
                 </div>
               </NavLink>
             </li>
@@ -87,7 +90,9 @@ function Sidebar() {
                   <IoDocumentsOutline
                     className={`${isNavbarOpen && "hidden"}`}
                   />
-                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>Document</p>
+                  <p className={`${!isNavbarOpen && "hidden"} font-poppins`}>
+                    Document
+                  </p>
                 </div>
               </NavLink>
             </li>

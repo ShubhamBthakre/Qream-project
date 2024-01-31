@@ -2,7 +2,7 @@ import React from "react";
 
 function DashboardCard({ label, title, count }) {
   return (
-    <div className="w-full min-w-[100px] max-w-[300px] lg:max-w-[380px] min-h-52 mb-4  mr-4 bg-light-sky rounded-xl flex flex-col p-5">
+    <div className="w-full max-w-[200px] md:max-w-[280px] lg:max-w-[340px] min-h-52 mb-4  mr-4 bg-light-sky rounded-xl flex flex-col p-5">
       <div className="w-full flex justify-end mb-2">
         <label>{label}</label>
         <select className=" bg-light-sky">

@@ -1,21 +1,10 @@
 import React from "react";
-import MOCK_DATA from '../assets/MOCK_DATA.json'
-import { useBusinessContext } from "../context/businessContext";
 
-console.log(MOCK_DATA);
+function ItemCard({ BusinessItemDetails }) {
+  console.log("Business details in Item card", BusinessItemDetails);
 
-function ItemCard() {
-  const { activeNavbarTitle, itemDetails } = useBusinessContext();
-  console.log("active Navbar Details", activeNavbarTitle);
-  console.log("item details", itemDetails);
-
-  const BusinessItemDetails = MOCK_DATA.filter(
-    (data) => Number(data.application_no) === Number(activeNavbarTitle)
-  );
-  console.log("Business details", BusinessItemDetails);
   return (
     <div className="max-w-[1200px] bg-medium-sky rounded-lg mt-5 p-1 md:p-5 text-sm md:text-lg">
-      
       <div className="flex justify-between items-center flex-wrap border-b border-border-color p-2">
         <p>Application no -#{BusinessItemDetails[0].id}</p>
         <p>Date: {BusinessItemDetails[0].date}</p>

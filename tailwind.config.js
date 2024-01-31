@@ -10,11 +10,12 @@ export default {
         "light-sky": "rgba(209, 233, 255, 0.37)",
         "medium-sky": "#EEF7FF",
         "border-color": "rgba(0, 0, 0, 0.28)",
+        "green-button": "#A9FD81",
+        "orange-button": "#FDD381",
       },
       fontFamily: {
-        podkova: ['Podkova'],
-        poppins: ['Poppins'],
-        mitr:['Mitr'],
+        poppins: ["Poppins"],
+        mitr: ["Mitr"],
       },
       transitionProperty: {
         width: "width",

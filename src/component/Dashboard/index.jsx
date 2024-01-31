@@ -5,7 +5,7 @@ import { data } from "autoprefixer";
 
 function Dashboard() {
   return (
-    <div className={`w-full flex flex-col min-h-full`}>
+    <div className={`w-full mx-auto flex flex-col min-h-full`}>
       <div className="flex flex-wrap ">
         <DashboardCard title="New business" count="12" label="Day" />
         <DashboardCard title="In progress" count="06" label="Type" />
